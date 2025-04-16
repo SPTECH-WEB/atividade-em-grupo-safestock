@@ -1,4 +1,4 @@
-package com.example.atividade01.Model;
+package com.example.atividade01.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

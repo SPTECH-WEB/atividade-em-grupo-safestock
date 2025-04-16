@@ -1,14 +1,14 @@
-package com.example.atividade01.Model;
+package com.example.atividade01.model;
 
-import com.example.atividade01.Repository.PedidoStrategy;
+import com.example.atividade01.repository.PedidoStrategy;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Transportadora implements PedidoStrategy {
+public class Expressa implements PedidoStrategy {
 
     @Override
     public double calcular (double valor) {
-        return valor * 2 + 7.0;
+        return valor * 1.6 + 8.0;
     }
 
     @Override

@@ -1,8 +1,6 @@
-package com.example.atividade01.Service;
+package com.example.atividade01.service;
 
-import com.example.atividade01.Model.Pedido;
-import com.example.atividade01.Repository.PedidoStrategy;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.atividade01.repository.PedidoStrategy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
