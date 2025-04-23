@@ -4,7 +4,7 @@ import com.example.atividade01.model.EntregaTransportadora;
 import com.example.atividade01.repository.PedidoStrategy;
 import org.springframework.stereotype.Service;
 
-@Service("EntregaTransporte")
+@Service("EntregaTransportadora")
 public class PedidoAdapter implements PedidoStrategy {
     private final EntregaTransportadora entregaTransportadora;
 

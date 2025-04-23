@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Pedidos")
+@RequestMapping("/pedidos")
 public class PedidoController {
     private final PedidoService pedidoService;
     public PedidoController(PedidoService pedidoService) {
         this.pedidoService = pedidoService;
     };
 
-    @PostMapping
+    @PostMapping("/cadastrarProdutos")
     public ResponseEntity<Pedido> criarPedido(@RequestBody Pedido pedido) {
         Pedido salvo = pedidoService.save(pedido);
         return ResponseEntity.ok(salvo);
@@ -29,7 +29,7 @@ public class PedidoController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
+    @GetMapping("/apresentarProdutos")
     public ResponseEntity<List<Pedido>> listarPedidos() {
         List<Pedido> pedidos = pedidoService.findAll();
         return ResponseEntity.ok(pedidos);
