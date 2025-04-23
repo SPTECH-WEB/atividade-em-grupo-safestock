@@ -1,93 +1,55 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/aHACxyIM)
-# 📦 Projeto de Entregas com Adapter, Strategy e Observer
+Bem vindo ao Software SafeStock!
 
-## 🎯 Objetivo
-Este projeto foi desenvolvido como parte de uma atividade prática em grupo para aplicação dos padrões de projeto **Adapter**, **Strategy** e **Observer** utilizando Java com Spring Boot.
+Esse é apenas uma amostra do nosso sistema que visa realizar o controle de produtos de limpeza, nesse caso realizamos a criação de novos pedidos dos produtos para seu fornecedor, deixando assim seu estoque mais seguro e organizado 🫧🧹
 
----
+Oque o sistema faz?
 
-## 🧱 Cenário
-Você faz parte da equipe de desenvolvimento de uma plataforma de e-commerce. Seu time recebeu a missão de desenvolver o novo módulo de **entregas** da aplicação. Esse módulo precisa ser flexível, reutilizável e de fácil manutenção. Para isso, será necessário aplicar os três padrões de projeto: Adapter, Strategy e Observer.
+✅Cadastro de novos pedidos
+✅Registra e notifica um novo pedido junto com o valor do frete dos pedidos
+✅Apresentar os produtos pedidos
 
----
+Como?
+Nosso projeto está estruturado com as melhores técnicas do mercado atual, sendo assim conseguimos através dos nosso endpoints:
 
-## 👥 Divisão sugerida entre os 6 membros do grupo
+/pedidos/{id}/processar -> registra um novo pedido junto com o valor do frete
 
-| Membro | Responsabilidade |
-|--------|------------------|
-| 1      | Criar a entidade `Pedido` e configurar o JPA |
-| 2      | Implementar o padrão Strategy com pelo menos 3 estratégias de frete |
-| 3      | Criar a integração com uma transportadora externa utilizando Adapter |
-| 4      | Implementar os Observers (e-mail, log, notificação) |
-| 5      | Criar os Controllers e configurar os endpoints REST |
-| 6      | Testar, documentar e montar o `README.md` com as instruções de uso |
+/pedidos/cadastrarProdutos -> cadastrar novos produtos passando como body (corpo) JSON as propriedades: nome, descrição e preço (o id vai automático começando do 1 até o infinito e além 😉)
 
----
+/pedidos/apresentarProdutos -> mostra nosso produtos no formato JSON
 
-## ✅ Funcionalidades obrigatórias
+Como testar?
 
-- Cadastro de pedidos via endpoint REST.
-- Cálculo de frete baseado no tipo de entrega informado (`expressa`, `economica`, `transportadora`).
-- Integração com transportadora externa simulada via Adapter.
-- Disparo automático de pelo menos **três observadores** (ex: e-mail, log, SMS) após o processamento de um pedido.
-- README com instruções e explicações dos padrões utilizados.
+Utilizando o Insomnia:
+Rode o projeto utilizando uma IDE (indicamos o IntelliJ)
+Abra o Insomnia e coloque o endpoint correspondente.
 
----
+(Nosso sistema é configurado para rodar no ambiente local na porta 8080 - http://localhost:8080/pedidos/url...)
 
-## 🚀 Funcionalidades
+Utilizando o Swagger:
 
-- `POST /pedidos` → Cria e processa um pedido
-- `GET /pedidos` → Lista todos os pedidos
-- Integração com transportadora externa (simulada)
-- Cálculo de frete via Strategy
-- Notificações automáticas com Observer
+Rode o projeto utilizando uma IDE (indicamos o IntelliJ)
+Coloque essa URL no seu navegador: http://localhost:8080/swagger-ui/index.html
 
----
-
-## 📐 Padrões de Projeto Aplicados
-
-| Padrão     | Descrição |
-|------------|-----------|
-| **Adapter** | Permite que o sistema utilize a API da transportadora externa, mesmo com uma interface diferente. |
-| **Strategy** | Permite alterar dinamicamente o cálculo do frete sem mudar o código principal. |
-| **Observer** | Permite que várias ações (e-mail, log, notificações) sejam executadas automaticamente após um pedido ser processado. |
-
----
-
-## 🧪 Como testar
-
-1. Rode a aplicação com `mvn spring-boot:run`.
-2. Faça uma requisição `POST`:
-
-```
-POST /pedidos
-Content-Type: application/json
-
+Utilize esse exemplo como body JSON 
 {
-  "cliente": "Maria",
-  "produto": "Notebook",
-  "peso": 5.0,
-  "tipoEntrega": "transportadora"
+    "nome": "Detergente Líquido",
+    "descricao": "Detergente para remoção de sujeiras difíceis e gorduras.",
+    "preco": 15.50
 }
-```
 
-3. Verifique no console os logs de notificação, integração e cálculo de frete.
+Após você conseguir cadastrar um novo pedido você pode processar seu pedido com o valor da entrega dependendo do tipo escolhido seguinte URL:
 
----
+http://localhost:8080/pedidos/1/processar?categoria=EntregaTransporte&valor=5.5
 
-## 👥 Integrantes do grupo
+O que ela faz 🧐
+Ela utiliza o parâmetro id para buscar o produto no banco de dados, e após o processar adicionamos o '?' categoria -> que indica qual é a categoria de entrega que queremos em seguida valor -> que seria o valor do produto.
 
-| Nome | Função |
-|------|--------|
-| Aluno 1 | Entidade Pedido |
-| Aluno 2 | Strategy do frete |
-| Aluno 3 | Adapter da transportadora externa |
-| Aluno 4 | Observers (email, log, notificação) |
-| Aluno 5 | Controller REST |
-| Aluno 6 | Testes e documentação |
+Sugerimos que você utilize esse modelo para teste:
+http://localhost:8080/pedidos/1/processar?categoria=EntregaTransporte&valor=15.5
 
----
+Mas você também pode testar utilizando as seguintes categorias
+Economica
+Expressa
+EntregaTransporte
 
-## 📄 Licença
-Uso acadêmico - Exercício prático de padrões de projeto.
-
+Após rodar, se tudo der certo aparecerá no console da IDE utilizada 3 notificações mostrando de maneiras diferentes que o pedido foi registrado.
